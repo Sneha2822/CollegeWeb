@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+       /****************HEADER SECTION****************/
+.header {
+	background: #0055a4;
+	padding: 6px;
+}
+
+
+
+.header marquee {
+	font-size: 20px;
+	color: #ffffff;
+	width: 80%;
+}
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .faded-red {
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button-container button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="header">
+  <div class="container">
+    
+    <marquee> The attendance percentage of each student is shown (updated monthly). </marquee>
+  </div>
+</div>
+    <h1>Student Attendance Tracker</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Roll No.</th>
+                <th>Student Name</th>
+                <th>Total Classes</th>
+                <th>Classes Attended</th>
+                <th>Attendance Percentage</th>
+            </tr>
+        </thead>
+        <tbody id="attendanceTable">
+            <!-- Student attendance data will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <button id="submitBtn" onclick="submitAttendance()">Submit</button>
+        <button id="updateBtn" onclick="toggleUpdateMode()" style="display: none;">Update</button>
+    </div>
+
+    <script>
+        // Sample student attendance data
+        const studentData = [
+            { rollNo: 1, name: 'Abhija', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 2, name: 'Archa', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 3, name: 'Athira', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 4, name: 'Hanna', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+             { rollNo: 5, name: 'Karthika', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 6, name: 'Malavika', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 7, name: 'Nanditha', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 8, name: 'Sanjana', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 9, name: 'Sneha', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+            { rollNo: 10, name: 'Surya', totalClasses: 0, classesAttended: 0, attendancePercentage: 0 },
+        ];
+
+        let updateMode = false; // Flag to control update mode
+
+        // Function to calculate attendance percentage for a student
+        function calculateAttendance(index) {
+            const student = studentData[index];
+            if (!isNaN(student.totalClasses) && !isNaN(student.classesAttended)) {
+                student.attendancePercentage = ((student.classesAttended / student.totalClasses) * 100).toFixed(2);
+            }
+            populateAttendanceTable();
+        }
+
+        // Function to populate the table with student attendance data
+        function populateAttendanceTable() {
+            const tableBody = document.getElementById('attendanceTable');
+            tableBody.innerHTML = '';
+
+            studentData.forEach((student, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.rollNo}</td>
+                    <td>${student.name}</td>
+                    <td><input type="number" value="${student.totalClasses}" ${updateMode ? '' : 'disabled'} onchange="studentData[${index}].totalClasses = this.value; calculateAttendance(${index});" /></td>
+                    <td><input type="number" value="${student.classesAttended}" ${updateMode ? '' : 'disabled'} onchange="studentData[${index}].classesAttended = this.value; calculateAttendance(${index});" /></td>
+                    <td class="${student.attendancePercentage < 73 ? 'faded-red' : ''}">${student.attendancePercentage}%</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            // Toggle input fields and buttons based on update mode
+            const inputFields = document.querySelectorAll('input');
+            const submitBtn = document.getElementById('submitBtn');
+            const updateBtn = document.getElementById('updateBtn');
+
+            if (updateMode) {
+                inputFields.forEach(input => input.removeAttribute('disabled'));
+                submitBtn.style.display = 'none';
+                updateBtn.style.display = 'inline-block';
+            } else {
+                inputFields.forEach(input => input.setAttribute('disabled', 'disabled'));
+                submitBtn.style.display = 'inline-block';
+                updateBtn.style.display = 'none';
+            }
+        }
+
+        // Function to submit attendance details
+        function submitAttendance() {
+            updateMode = true;
+            populateAttendanceTable();
+        }
+
+        // Function to toggle update mode
+        function toggleUpdateMode() {
+            updateMode = !updateMode;
+            populateAttendanceTable();
+        }
+
+        // Call the function to populate the table with data initially
+        populateAttendanceTable();
+    </script>
+</body>
+</html>
