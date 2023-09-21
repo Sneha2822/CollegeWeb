@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Details and Internal Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black ;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color:#f2f2f2;
+        }
+
+        .upload-btn {
+            background-color:#007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .file-input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Staff Details and Internal Marks</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                <th>Name</th>
+                <th>Subject Handled</th>
+                <th>Qualifications</th>
+                <th>Internal Marks (PDF)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Sample data for staff details -->
+            
+
+             <tr>
+                <td>1</td>
+                <td>Dr.Dileep</td>
+                <td>Operating system</td>
+                <td>B.tech, M.tech, Ph.D in CS</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+             <tr>
+                <td>2</td>
+                <td>Prof.Rehna</td>
+                <td>Web Application Development</td>
+                <td>B.tech, M.tech in CS</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+             <tr>
+                <td>3</td>
+                <td>Prof.Neethi</td></td>
+                <td>FLAT</td>
+                <td>B.tech, M.tech in CS</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+             <tr>
+                <td>4</td>
+                <td>Dr. Lekshmy</td>
+                <td>Data Communication</td>
+                <td>B.tech, M.tech, Ph.D in CS</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+             <tr>
+                <td>5</td>
+                <td>Prof.Sumi</td>
+                <td>MSE</td>
+                <td>B.tech, M.tech in CS</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Prof.Mujeeb</td>
+                <td>MSE</td>
+                <td>B.tech, M.tech in EEE</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+             <tr>
+                <td>7</td>
+                <td>Dr.Dileep</td>
+                <td>OS Lab</td>
+                <td>B.tech, M.tech, Ph.D in CS</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+             <tr>
+                <td>8</td>
+                <td>Prof.Rehna</td>
+                <td>WAD Lab</td>
+                <td>B.tech, M.tech in CS</td>
+                <td>
+                    <input type="file" class="file-input" onchange="uploadInternalMarks(this)">
+                    <button class="upload-btn" onclick="document.querySelector('.file-input').click()">Upload</button>
+                </td>
+            </tr>
+            <!-- Add more staff details here -->
+        </tbody>
+    </table>
+    
+            <!-- Add more staff details here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to handle file upload for internal marks
+        function uploadInternalMarks(input) {
+            const file = input.files[0];
+            if (file) {
+                // You can implement code here to handle the uploaded PDF file,
+                // such as storing it on a server, processing it, etc.
+                alert('Internal marks uploaded successfully.');
+            }
+        }
+    </script>
+</body>
+</html>
